@@ -5,39 +5,6 @@
 </div>
 
 <div class="row mt-4">
-    <div class="col-md-6">
-        <h3 class="">Create a New Post:</h3>
-
-        <form class="new-post-form">
-            <div class="mb-3">
-                <label for="postTitle" class="form-label">Title of Post</label>
-                <input type="text" class="form-control" id="postTitle">
-            </div>
-            <div class="mb-3">
-                <label for="postContent" class="form-label">Write Your Post</label>
-                <input type="text" class="form-control" id="postContent" height="200">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        {{!--
-        <form class="form new-project-form">
-            <div class="form-group">
-                <label class="" for="project-name">project name:</label>
-                <input class="form-input" type="text" id="project-name" name="project-name" />
-            </div>
-            <div class="form-group">
-                <label for="project-funding">needed funding ($):</label>
-                <input class="form-input" type="number" id="project-funding" name="project-funding" />
-            </div>
-            <div class="form-group">
-                <label for="project-desc">description:</label>
-                <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form> --}}
-    </div>
 
     {{#if posts.length}}
     <div class="col-md-6 project-list">
@@ -55,6 +22,13 @@
         {{/each}}
     </div>
     {{/if}}
-</div>
 
-<script src="/js/profile.js"></script>
+    <div class="col-md-10">
+        <button class="btn btn-primary create-post">Create New Post</button>
+
+
+
+
+    </div>
+
+    <script src="/js/profile.js"></script>
