@@ -1,0 +1,17 @@
+<div class="text-center">
+    <h2 id="title">{{title}}</h2>
+    <p>{{content}}</p>
+    <p>Created by {{user.name}} on {{format_date date_created}}</p>
+
+    {{#each comment}}
+    <li>{{comment.ccontent}}</li>
+    {{/each}}
+
+    <form class="new-comment-form">
+        <div class="mb-3">
+            <label for="comment" class="form-label"> Add New Comment</label>
+            <input type="text" class="form-control" id="comment">
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+</div>
