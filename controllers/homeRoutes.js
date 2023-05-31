@@ -85,7 +85,7 @@ router.get('/project/:id', async (req, res) => {
 
     res.render('post', {
       ...post,
-      // ...comment,
+      ...comment,
       logged_in: req.session.logged_in
     });
   } catch (err) {
