@@ -1,0 +1,25 @@
+<div class="row mb-2">
+    <div class="col-md-8">
+        <h2 id="">Current Title:</h2>
+        <h3>{{title}}</h3>
+    </div>
+    <div class="col-md-8 mt-4">
+        <h2>Current Post:</h2>
+        <h3 id="">{{content}}</h3>
+    </div>
+
+    <form class="update-post-form mt-4">
+        <div class="mb-3">
+            <label for="postTitle" class="form-label">New Title of Post</label>
+            <input type="text" class="form-control" id="postTitle" placeholder="{{title}}">
+        </div>
+        <div class="mb-3">
+            <label for="postContent" class="form-label">Write Your Post</label>
+            <input type="text" class="form-control" id="postContent" placeholder="{{content}}">
+            <p id="id" style="display: none;">{{id}}</p>
+        </div>
+        <button type="submit" class="btn btn-sm btn-success update">Update</button>
+    </form>
+</div>
+
+<script src="/js/update.js"></script>

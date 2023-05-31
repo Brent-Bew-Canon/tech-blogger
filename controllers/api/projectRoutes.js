@@ -1,6 +1,32 @@
 const router = require('express').Router();
-const { Project, Post } = require('../../models');
+const { Project, Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
+
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Post }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    const postData = await Post.findByPk(req.params.id, {
+      include: [{ model: User }]
+    })
+
+    const post = postData.get({ plain: true });
+
+    res.render('update', {
+      ...user,
+      ...post,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -15,21 +41,35 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+router.put('/', withAuth, async (req, res) => {
+  try {
+    const updatePost = await Post.update({ title: req.body.title, content: req.body.content }, {
+      where: {
+        id: req.body.id
+      }
+    });
+
+    res.status(200).json(updatePost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const projectData = await Project.destroy({
+    const postData = await Post.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!projectData) {
+    if (!postData) {
       res.status(404).json({ message: 'No project found with this id!' });
       return;
     }
 
-    res.status(200).json(projectData);
+    res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
