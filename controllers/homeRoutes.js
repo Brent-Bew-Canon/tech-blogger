@@ -95,7 +95,7 @@ router.get('/project/:id', async (req, res) => {
       }
     );
     const comment = commentData.map((comment) => comment.get({ plain: true }));
-    console.log(comment)
+
     res.render('post', {
       post,
       comment,
