@@ -1,10 +1,15 @@
-const { doc } = require("prettier");
+
 
 const newFormHandler = async (event) => {
     event.preventDefault();
 
     const comment = document.querySelector('#comment').value.trim();
-    const title = document.querySelector('#title').value;
+    const url = window.location.href;
+    let title = url.split('http://localhost:3001/project/');
+    title = title[1]
+    title = Number(title)
+    console.log(title)
+    console.log(comment)
 
     if (comment) {
         const response = await fetch(`/api/projects/comment`, {
@@ -16,10 +21,12 @@ const newFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
-        } else {
-            alert('Failed to create post');
+            document.location.reload();
+            console.log('success')
         }
+        // else {
+        //     alert('Failed to post comment');
+        // }
     }
 };
 

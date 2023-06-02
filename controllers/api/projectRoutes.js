@@ -41,16 +41,26 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+//TODO: Fix that Comment route cannot find user by pk nor create a comment with user id
 router.post('/comment', withAuth, async (req, res) => {
   try {
+
+    // const postData = await Post.findOne({ where: { title: req.body.title } });
+    // const post = postData.get({ plain: true });
+
     const newComment = await Comment.create({
-      ...req.body,
+      ccontent: req.body.comment,
       user_id: req.session.user_id,
+      post_id: req.body.title
     });
 
-    res.status(200).json(newPost);
+
+
+    res.status(200).json(newComment);
+    console.log(newComment)
   } catch (err) {
     res.status(400).json(err);
+    console.log(err)
   }
 });
 

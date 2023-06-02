@@ -7,34 +7,30 @@ Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             primaryKey: true,
             autoIncrement: true,
+            unique: true
         },
         ccontent: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: false
         },
         post_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'post',
-                key: 'id',
-            },
+            allowNull: false,
+            unique: false
         },
         user_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
+            allowNull: false,
+            // primaryKey: true,
+            unique: false
         }
     },
     {
         sequelize,
         timestamps: false,
-        freezeTableName: true,
-        underscored: true,
         modelName: 'comment',
     }
 );
