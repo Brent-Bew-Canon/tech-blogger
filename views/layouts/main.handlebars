@@ -14,20 +14,21 @@
 
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1 class="">
-        <a href="/">The Tech Blog</a>
-      </h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/dashboard">| Dashboard</a>
+    <header class="display-flex justify-space-between align-center p-2 ps-5">
+
+      <nav class="mb-5">
+        <a href="/" class="lighter-color fs-4 me-5">Home</a>
+        <a href="/dashboard" class="lighter-color fs-4 me-5">Dashboard</a>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <button class="no-button" id="logout">logout</button>
+        <button class="no-button fs-4 me-5" id="logout">logout</button>
         {{else}}
-        <a href="/login">| login</a>
+        <a href="/login" class="fs-4 me-5 lighter-color"> login</a>
         {{/if}}
       </nav>
+      <h1 class="mb-4">
+        <a class="title-button px-3 py-2 rounded-3" href="/">The Tech Blog</a>
+      </h1>
     </header>
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
