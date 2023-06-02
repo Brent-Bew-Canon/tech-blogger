@@ -83,10 +83,14 @@ router.get('/project/:id', async (req, res) => {
     const commentData = await Comment.findAll({ where: { post_id: postData.id } });
     const comment = commentData.map((comment) => comment.get({ plain: true }));
 
+    console.log(post)
+
+    console.log(comment[0])
     res.render('post', {
-      ...post,
-      ...comment,
-      logged_in: req.session.logged_in
+      post,
+      comment,
+      logged_in: req.session.logged_in,
+      butter: "who goes there"
     });
   } catch (err) {
     res.status(500).json(err);
