@@ -24,8 +24,15 @@ Comment.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            // primaryKey: true,
-            unique: false
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
+        date_created: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         }
     },
     {

@@ -80,17 +80,26 @@ router.get('/project/:id', async (req, res) => {
     });
     const post = postData.get({ plain: true });
 
-    const commentData = await Comment.findAll({ where: { post_id: postData.id } });
+    const commentData = await Comment.findAll(
+      {
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+        ],
+        where:
+        {
+          post_id: postData.id
+        }
+      }
+    );
     const comment = commentData.map((comment) => comment.get({ plain: true }));
-
-    console.log(post)
-
-    console.log(comment[0])
+    console.log(comment)
     res.render('post', {
       post,
       comment,
-      logged_in: req.session.logged_in,
-      butter: "who goes there"
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -120,7 +129,7 @@ router.get('/profile', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
