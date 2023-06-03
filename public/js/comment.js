@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
 
     const comment = document.querySelector('#comment').value.trim();
     const url = window.location.href;
-    let title = url.split('http://localhost:3001/project/');
+    let title = url.split('https://arcane-depths-18823.herokuapp.com/project/');
     title = title[1]
     title = Number(title)
     console.log(title)
